@@ -3,6 +3,8 @@ package org.application.notecalendarserver.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -18,5 +20,8 @@ public class User {
 
     private String login;
     private String password;
+
+    @OneToMany(mappedBy = "accountId", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Note> notes;
 
 }

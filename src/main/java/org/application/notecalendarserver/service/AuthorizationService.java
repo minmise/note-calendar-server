@@ -16,7 +16,8 @@ public class AuthorizationService {
         ExampleMatcher matcher = ExampleMatcher.matching().
                 withIgnorePaths("id").
                 withMatcher("login", ExampleMatcher.GenericPropertyMatchers.exact()).
-                withIgnorePaths("password");
+                withIgnorePaths("password").
+                withIgnorePaths("notes");
         if (userRepository.exists(Example.of(user, matcher))) {
             return (long) -1;
         }
@@ -28,7 +29,8 @@ public class AuthorizationService {
         ExampleMatcher matcher = ExampleMatcher.matching().
                 withIgnorePaths("id").
                 withMatcher("login", ExampleMatcher.GenericPropertyMatchers.exact()).
-                withMatcher("password", ExampleMatcher.GenericPropertyMatchers.exact());
+                withMatcher("password", ExampleMatcher.GenericPropertyMatchers.exact()).
+                withIgnorePaths("notes");
         List<User> list = userRepository.findAll(Example.of(user, matcher));
         if (list.isEmpty()) {
             return (long) -1;
